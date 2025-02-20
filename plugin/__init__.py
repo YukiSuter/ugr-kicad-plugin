@@ -14,6 +14,6 @@ def __is_in_call_stack(function_name: str, module_name: str) -> bool:
 
 
 if __is_in_call_stack("LoadPluginModule", "pcbnew"):
-    from .template_plugin_action import TemplatePluginAction
+    from .ugr_plugin_action import UGRPluginAction
 
-    TemplatePluginAction().register()
+    UGRPluginAction().register()

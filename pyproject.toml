@@ -6,8 +6,8 @@ requires = [
 build-backend = "hatchling.build"
 
 [project]
-name = "kicad-plugin-template"
-keywords = ["kicad", "template"]
+name = "UGRacing-KiCad-Plugin"
+keywords = ["kicad", "ugracing"]
 requires-python = ">=3.8"
 license = {text = "MIT"}
 classifiers = [
@@ -19,10 +19,13 @@ classifiers = [
   "Topic :: Scientific/Engineering :: Electronic Design Automation (EDA)"
 ]
 dynamic = ["version"]
+dependencies = [
+  "kikit"
+]
 
 [project.urls]
-"Homepage" = "https://github.com/adamws/kicad-plugin-template"
-"Bug Tracker" = "https://github.com/adamws/kicad-plugin-template/issues"
+"Homepage" = "https://github.com/YukiSuter/ugr-kicad-plugin"
+"Bug Tracker" = "https://github.com/YukiSuter/ugr-kicad-plugin/issues"
 
 [project.scripts]
 plugin-cli = "plugin.__main__:app"
@@ -31,25 +34,25 @@ plugin-cli = "plugin.__main__:app"
 path = "plugin/version.py"
 
 [tool.hatch.build.targets.kicad-package]
-name = "Template"
-description = "Template Plugin for KiCad"
+name = "UGRacing Utilities"
+description = "UGRacing Plugin for KiCad"
 description_full = [
-  "This is plugin template. It has no bigger purpose.\n",
-  "Visit project homepage to learn more.",
+  "This is a plugin intended for use by UGRacing.",
 ]
 # plugin identifier, remember to change!
-identifier = "com.github.adamws.kicad-plugin-template"
-author = { name = "anonymous", web="https://example.com" }
+identifier = "com.ugracing.yukis.ugracing-plugin"
+author = { name = "Yuki Suter", web="https://yukisuter.com" }
 status = "development"
-kicad_version = "6.0"
+kicad_version = "8.0"
 sources = ["plugin"]
 include = [
   "plugin/*.py",
   "plugin/icon.png",
+  "plugin/icon_full.png",
 ]
 icon = "resources/icon.png"
 # hosted on GitHub pages, remember to change username and project name!
-download_url = "https://adamws.github.io/kicad-plugin-template/{zip_name}"
+download_url = "https://github.com/YukiSuter/ugr-kicad-plugin"
 
 [tool.hatch.build.targets.kicad-package.hooks.kicad-repository]
 # use defauls
