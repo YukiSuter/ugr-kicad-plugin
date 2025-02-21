@@ -79,9 +79,7 @@ class UGRDialog(wx.Dialog):
                 pt_input = stencildialog.pt_input.GetValue()
                 if not shutil.which("openscad"):
                     os.environ["PATH"] = f"\\\\LUMIERE.eng-ad.gla.ac.uk\\Groups\\UGR\\Software\\openscad-2021.01{os.pathsep}{os.environ['PATH']}"
-                    wx.LogMessage("Added openscad on path")
-                wx.LogMessage("Found openscad on path")
-                pw_message = wx.MessageDialog(self, "Stencils generating. Please wait.", "Please wait", wx.OK | wx.ICON_INFORMATION)
+                pw_message = wx.MessageDialog(self, "Stencils generating. This may take some time. Press OK to ackowledge and continue.", "Please wait", wx.OK | wx.ICON_INFORMATION)
                 pw_message.ShowModal()
                 createPrinted(pcb_path, output_path, 1.6, 0.15, 1, "", "", float(ft_input), float(pt_input))
                 openX = wx.MessageDialog(self, "The stencils have successfully been generated. Would you like to open the folder?", "Open stencil folder?", wx.YES_NO | wx.YES_DEFAULT | wx.ICON_QUESTION)
