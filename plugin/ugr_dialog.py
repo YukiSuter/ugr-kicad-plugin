@@ -1,6 +1,9 @@
 import os
 import sys
 import subprocess
+import shutil
+
+from pathlib import Path
 
 import pcbnew
 import wx
@@ -67,15 +70,25 @@ class UGRDialog(wx.Dialog):
             wx.LogMessage(f"Dialog creation failed: {e}")
 
         if stencildialog.ShowModal() == wx.ID_OK:
-            board = pcbnew.GetBoard()
-            pcb_path = board.GetFileName()
-            output_path = os.path.join(pcb_path, "../stencils")
-            wx.LogMessage(output_path)
-            ft_input = stencildialog.ft_input.GetValue()
-            pt_input = stencildialog.pt_input.GetValue()
             try:
-                os.environ["PATH"] = f"\\LUMIERE.eng-ad.gla.ac.uk/Groups/UGR\Software\openscad-2021.01{os.pathsep}{os.environ['PATH']}"
+                board = pcbnew.GetBoard()
+                pcb_path = Path(board.GetFileName())
+                output_path = str(pcb_path.parent / "stencils")
+                wx.LogMessage(output_path)
+                ft_input = stencildialog.ft_input.GetValue()
+                pt_input = stencildialog.pt_input.GetValue()
+                if not shutil.which("openscad"):
+                    os.environ["PATH"] = f"\\\\LUMIERE.eng-ad.gla.ac.uk\\Groups\\UGR\\Software\\openscad-2021.01{os.pathsep}{os.environ['PATH']}"
+                    wx.LogMessage("Added openscad on path")
+                wx.LogMessage("Found openscad on path")
+                pw_message = wx.MessageDialog(self, "Stencils generating. Please wait.", "Please wait", wx.OK | wx.ICON_INFORMATION)
+                pw_message.ShowModal()
                 createPrinted(pcb_path, output_path, 1.6, 0.15, 1, "", "", float(ft_input), float(pt_input))
+                openX = wx.MessageDialog(self, "The stencils have successfully been generated. Would you like to open the folder?", "Open stencil folder?", wx.YES_NO | wx.YES_DEFAULT | wx.ICON_QUESTION)
+                response = openX.ShowModal()    
+
+                if response == wx.ID_YES:
+                    subprocess.Popen(["explorer", output_path])
             except Exception as e:
                 wx.LogMessage(f"Error occured: {e}")
             
