@@ -3,12 +3,12 @@ import os
 import pcbnew
 import wx
 
-from .example_dialog import ExampleDialog
+from .ugr_dialog import UGRDialog
 
 
-class TemplatePluginAction(pcbnew.ActionPlugin):
+class UGRPluginAction(pcbnew.ActionPlugin):
     def defaults(self) -> None:
-        self.name = "Template Plugin"
+        self.name = "UGR Plugin"
         self.category = "Templates"
         self.description = "This is plugin template"
         self.show_toolbar_button = True
@@ -19,7 +19,7 @@ class TemplatePluginAction(pcbnew.ActionPlugin):
             x for x in wx.GetTopLevelWindows() if x.GetName() == "PcbFrame"
         )
 
-        dlg = ExampleDialog(pcb_frame)
+        dlg = UGRDialog(pcb_frame)
         if dlg.ShowModal() == wx.ID_OK:
             # this plugin does nothing usefull
             pass
