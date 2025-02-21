@@ -1,0 +1,34 @@
+{
+    "packages": [
+        {
+            "$schema": "https://go.kicad.org/pcm/schemas/v1",
+            "name": "UGRacing Utilities",
+            "description": "UGRacing Plugin for KiCad",
+            "description_full": "This is a plugin intended for use by UGRacing.",
+            "identifier": "com.ugracing.yukis.ugracing-plugin",
+            "type": "plugin",
+            "author": {
+                "name": "Yuki Suter",
+                "contact": {
+                    "web": "https://yukisuter.com"
+                }
+            },
+            "license": "MIT",
+            "resources": {
+                "Homepage": "https://github.com/YukiSuter/ugr-kicad-plugin",
+                "Bug Tracker": "https://github.com/YukiSuter/ugr-kicad-plugin/issues"
+            },
+            "versions": [
+                {
+                    "version": "0.1.0",
+                    "status": "development",
+                    "kicad_version": "8.0",
+                    "download_sha256": "5bd9f97aa786b8fc5614f397c737d69ddf609a228044e682e1f721cfee361cc3",
+                    "download_size": 18472,
+                    "install_size": 17294,
+                    "download_url": "https://github.com/YukiSuter/ugr-kicad-plugin"
+                }
+            ]
+        }
+    ]
+}
